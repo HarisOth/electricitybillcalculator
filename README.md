@@ -31,16 +31,8 @@ Android application for calculating monthly electricity bills. Developed for ICT
 *(Add screenshots here later. You can upload images to GitHub and link them)*
 
 ##  Installation & Usage
-
-### Method 1: Download ZIP (Easiest)
 1. On GitHub, click **"Code"** → **"Download ZIP"**
 2. Extract the ZIP file on your computer
 3. Open Android Studio → **"Open"** → Select the extracted folder
 4. Wait for Gradle sync to complete
 5. Click **Run** (▶) button to launch on emulator/device
-
-### Method 2: Clone with Git
-```bash
-git clone https://github.com/HarisOth/electricitybillcalculator2.git
-cd electricitybillcalculator2
-# Then open with Android Studio
