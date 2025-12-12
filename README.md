@@ -31,7 +31,7 @@ Android application for calculating monthly electricity bills. Developed for ICT
 
 | Icon Page | Main Page | History Page | Details Page | About Page |
 |-------------|-------------|---------|---------|------------|
-| ![Icon](ss1.png) | ![Main](ss2.png) | ![History](ss3.png) | ![Details](ss4.png) | ![About](ss5.png)(ss6.png) |
+| ![Icon](ss1.png) | ![Main](ss2.png) | ![History](ss3.png) | ![Details](ss4.png) | ![About](ss5.png) !(ss6.png) |
 
 **Main Screen**: Calculate electricity bill with month selection, unit input, and rebate slider
 **History**: View all saved calculations in list format
