@@ -4,11 +4,11 @@ Android application for calculating monthly electricity bills. Developed for ICT
 
 ##  Features
 - **Calculate Electricity Bill**
-- **Month Selection** (January - December) via spinner
-- **Adjustable Rebate** (0% - 5%) using seek bar
-- **Local Database Storage** using SQLite to save calculation history
-- **Detailed View** of each bill calculation
-- **User-Friendly Interface** with custom theme and icons
+- **Month Selection** (January - December)
+- **Adjustable Rebate** (0% - 5%)
+- **Local Database Storage** using SQLite
+- **Detailed View**
+- **User-Friendly Interface**
 
 ##  Architecture
 - **Language**: Java
