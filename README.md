@@ -29,14 +29,17 @@ Android application for calculating monthly electricity bills. Developed for ICT
 
 ##  Application Screenshots
 
-| Icon Page | Main Page | History Page | Details Page | About Page |
-|-------------|-------------|---------|---------|------------|
-| ![Icon](ss1.png) | ![Main](ss2.png) | ![History](ss3.png) | ![Details](ss4.png) | ![About](ss5.png) !(ss6.png) |
+| | | |
+|-|-|-|
+| **1. App Icon**<br>![Icon](ss1.png) | **2. Main Screen**<br>![Main](ss2.png) | **3. History List**<br>![History](ss3.png) |
+| **4. Bill Details**<br>![Details](ss4.png) | **5. About Page**<br>![About](ss5.png) | **6. GitHub Link in About Page**<br>![GitHub](ss6.png) |
 
-**Main Screen**: Calculate electricity bill with month selection, unit input, and rebate slider
-**History**: View all saved calculations in list format
-**Details**: Detailed view of individual bill calculation
-**About**: Student information and GitHub repository link
+**1. App Icon** - Application logo and splash screen  
+**2. Main Screen** - Input month, electricity units, and adjust rebate (0-5%)  
+**3. History List** - All saved calculations displayed in chronological order  
+**4. Bill Details** - Complete breakdown showing month, units, charges, rebate, and final cost  
+**5. About Page** - Student information including name, ID, course details  
+**6. GitHub Link** - Clickable URL that opens the application's GitHub repository
 
 ##  Installation & Usage
 1. On GitHub, click **"Code"** → **"Download ZIP"**
