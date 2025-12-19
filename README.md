@@ -60,4 +60,3 @@ The electricity units are charged based on the block used. Refer to the table fo
 5. Wait for Gradle sync to complete  
 6. Connect device or start emulator  
 7. Click **Run** (▶) to install and launch  
-# Open in Android Studio
