@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtRebateValue, txtMonthResult, txtChargesResult, txtRebateResult, txtFinalResult;
     private EditText inputUnit;
     private Button btnCalculate, btnHistory, btnAbout;
-    private CardView cardInput, cardResult;
+    private CardView cardResult;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -23,30 +23,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dbHelper = new DatabaseHelper(this);
-        initializeViews();
+        initViews();
         setupSpinner();
         setupSeekBar();
-        setupButtonListeners();
+        setupButtons();
     }
 
-    private void initializeViews() {
+    private void initViews() {
         spinnerMonth = findViewById(R.id.spinnerMonth);
         seekBarRebate = findViewById(R.id.seekBarRebate);
         txtRebateValue = findViewById(R.id.txtRebateValue);
         inputUnit = findViewById(R.id.inputUnit);
+
         btnCalculate = findViewById(R.id.btnCalculate);
         btnHistory = findViewById(R.id.btnHistory);
         btnAbout = findViewById(R.id.btnAbout);
 
-        // Card views
-        cardInput = findViewById(R.id.cardInput);
-        cardResult = findViewById(R.id.cardResult);
-
-        // Result TextViews
         txtMonthResult = findViewById(R.id.txtMonthResult);
         txtChargesResult = findViewById(R.id.txtChargesResult);
         txtRebateResult = findViewById(R.id.txtRebateResult);
         txtFinalResult = findViewById(R.id.txtFinalResult);
+
+        cardResult = findViewById(R.id.cardResult);
     }
 
     private void setupSpinner() {
@@ -57,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMonth.setAdapter(adapter);
-        spinnerMonth.setSelection(0);
     }
 
     private void setupSeekBar() {
         txtRebateValue.setText(getString(R.string.label_selected_rebate, 0));
+        seekBarRebate.setMax(5);
 
         seekBarRebate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -73,83 +71,83 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setupButtonListeners() {
+    private void setupButtons() {
         btnCalculate.setOnClickListener(v -> calculateBill());
         btnHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 
     private void calculateBill() {
-        String selectedMonth = spinnerMonth.getSelectedItem().toString();
-        String unitInputStr = inputUnit.getText().toString().trim();
+        String unitStr = inputUnit.getText().toString().trim();
 
-        if (unitInputStr.isEmpty()) {
+        if (unitStr.isEmpty()) {
             inputUnit.setError(getString(R.string.error_enter_units));
-            showToast(getString(R.string.error_enter_units));
             return;
         }
 
         try {
-            double totalUnit = Double.parseDouble(unitInputStr);
-            if (totalUnit <= 0) {
+            double unit = Double.parseDouble(unitStr);
+
+            if (unit <= 0) {
                 inputUnit.setError(getString(R.string.error_units_positive));
-                showToast(getString(R.string.error_units_positive));
                 return;
             }
 
-            int rebatePercentage = seekBarRebate.getProgress();
-            double totalCharges = calculateChargesBasedOnTariff(totalUnit);
-            double finalCost = totalCharges - (totalCharges * rebatePercentage / 100.0);
+            if (unit > 1000) {
+                inputUnit.setError(getString(R.string.error_units_max));
+                return;
+            }
 
-            displayResults(selectedMonth, totalCharges, rebatePercentage, finalCost);
-            saveToDatabase(selectedMonth, totalUnit, totalCharges, rebatePercentage, finalCost);
+            double totalCharges = calculateTariff(unit);
+            int rebate = seekBarRebate.getProgress();
+            double finalCost = totalCharges - (totalCharges * rebate / 100.0);
+
+            displayResult(totalCharges, rebate, finalCost);
+
+            dbHelper.addBill(new BillModel(
+                    spinnerMonth.getSelectedItem().toString(),
+                    unit,
+                    totalCharges,
+                    rebate,
+                    finalCost
+            ));
 
         } catch (NumberFormatException e) {
             inputUnit.setError(getString(R.string.error_invalid_number));
-            showToast(getString(R.string.error_invalid_number));
         }
     }
 
-    private double calculateChargesBasedOnTariff(double unit) {
-        if (unit <= 200) return unit * 0.218;
-        else if (unit <= 300) return (200 * 0.218) + ((unit - 200) * 0.334);
-        else if (unit <= 600) return (200 * 0.218) + (100 * 0.334) + ((unit - 300) * 0.516);
-        else if (unit <= 900) return (200 * 0.218) + (100 * 0.334) + (300 * 0.516) + ((unit - 600) * 0.546);
-        else return (200 * 0.218) + (100 * 0.334) + (300 * 0.516) + (300 * 0.546) + ((unit - 900) * 0.546);
+    /**
+     * Tariff calculation (MATCH SAMPLE TABLE)
+     */
+    private double calculateTariff(double unit) {
+        double total = 0;
+
+        if (unit <= 200) {
+            total = unit * 0.218;
+        } else if (unit <= 300) {
+            total = (200 * 0.218)
+                    + ((unit - 200) * 0.334);
+        } else if (unit <= 600) {
+            total = (200 * 0.218)
+                    + (100 * 0.334)
+                    + ((unit - 300) * 0.516);
+        } else { // 601 - 1000
+            total = (200 * 0.218)
+                    + (100 * 0.334)
+                    + (300 * 0.516)
+                    + ((unit - 600) * 0.546);
+        }
+
+        return total;
     }
 
-    private void displayResults(String month, double totalCharges, int rebate, double finalCost) {
-        txtMonthResult.setText(getString(R.string.label_month) + " " + month);
-        txtChargesResult.setText(String.format(getString(R.string.label_total_charges), totalCharges));
+    private void displayResult(double total, int rebate, double finalCost) {
+        txtMonthResult.setText(getString(R.string.label_month) + " " + spinnerMonth.getSelectedItem());
+        txtChargesResult.setText(String.format(getString(R.string.label_total_charges), total));
         txtRebateResult.setText(String.format(getString(R.string.label_rebate), rebate));
         txtFinalResult.setText(String.format(getString(R.string.label_final_cost), finalCost));
+
         cardResult.setVisibility(View.VISIBLE);
-
-        // Scroll to result
-        cardResult.post(() -> {
-            cardResult.requestFocus();
-            cardResult.requestLayout();
-        });
-    }
-
-    private void saveToDatabase(String month, double unit, double totalCharges, int rebate, double finalCost) {
-        BillModel bill = new BillModel(month, unit, totalCharges, rebate, finalCost);
-        long id = dbHelper.addBill(bill);
-
-        if (id != -1) {
-            showToast(getString(R.string.success_saved));
-        } else {
-            showToast(getString(R.string.error_save_failed, "Database error"));
-        }
-    }
-
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        dbHelper.close();
-        super.onDestroy();
     }
 }

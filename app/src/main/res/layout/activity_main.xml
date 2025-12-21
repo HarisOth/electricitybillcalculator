@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Header Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +98,7 @@
                     android:background="@drawable/spinner_background"
                     android:layout_marginBottom="20dp" />
 
-                <!-- Unit Input -->
+                <!-- Unit Input with 1000 kWh limit hint -->
                 <TextView
                     android:text="Electricity Unit (kWh)"
                     android:textColor="#333333"
@@ -112,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberDecimal"
-                    android:hint="Enter electricity units..."
+                    android:hint="Enter electricity units (1-1000 kWh)..."
                     android:padding="12dp"
                     android:background="@drawable/edittext_background"
                     android:layout_marginBottom="20dp" />
@@ -390,7 +391,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- INSTRUCTIONS CARD (TAMBAHAN) -->
+        <!-- Instructions Card with updated 1000 kWh limit -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -442,7 +443,7 @@
 
                 </LinearLayout>
 
-                <!-- Step 2 -->
+                <!-- Step 2 with 1000 kWh limit -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -459,7 +460,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="Enter electricity units used (kWh)"
+                        android:text="Enter electricity units used (1-1000 kWh)"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_width="0dp"
@@ -576,12 +577,21 @@
 
                 </LinearLayout>
 
-                <!-- Additional Note -->
+                <!-- Validation Note -->
+                <TextView
+                    android:text="Note: Maximum allowed electricity units is 1000 kWh."
+                    android:textSize="12sp"
+                    android:textColor="#F44336"
+                    android:textStyle="italic"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Footer Note -->
+        <!-- Footer -->
         <TextView
             android:text="© 2024 KiraBill - Electricity Bill Calculator"
             android:textSize="12sp"

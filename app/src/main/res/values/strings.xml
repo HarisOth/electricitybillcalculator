@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- App Name -->
     <string name="app_name">Electricity Bill Calculator</string>
 
@@ -32,8 +33,12 @@
     <string name="btn_about">ABOUT</string>
     <string name="btn_back_to_main">BACK TO MAIN</string>
     <string name="btn_back_to_history">BACK</string>
+    <string name="btn_edit">EDIT</string>
+    <string name="btn_delete">DELETE</string>
+    <string name="btn_save">SAVE</string>
+    <string name="btn_cancel">CANCEL</string>
 
-    <!-- About Page Strings -->
+    <!-- About Page -->
     <string name="student_name">MOHAMMAD HARIS HAIQAL BIN OTHMAN</string>
     <string name="student_id">2023213578</string>
     <string name="course_code">CDCS240</string>
@@ -43,26 +48,35 @@
     <string name="website_url">https://github.com/HarisOth/electricitybillcalculator</string>
 
     <!-- App Description -->
-    <string name="app_description">This application helps users calculate electricity bills based on tariff rates. Users can select month, enter electricity units, apply rebate percentage, and save calculation history in local database.</string>
+    <string name="app_description">
+        This application helps users calculate electricity bills based on tariff rates.
+        Users can select month, enter electricity units, apply rebate percentage,
+        and save calculation history in local database.
+    </string>
 
     <!-- Features -->
-    <string name="features">• Calculate electricity bill with tariff\n• Select month from dropdown\n• Adjustable rebate percentage (0-5%)\n• Save calculation history\n• View detailed bill information\n• Data stored in local database</string>
+    <string name="features">
+        • Calculate electricity bill with tariff\n
+        • Select month from dropdown\n
+        • Adjustable rebate percentage (0-5%)\n
+        • Save calculation history\n
+        • View detailed bill information\n
+        • Data stored in local database
+    </string>
 
     <!-- History Page -->
     <string name="history_item_format">%s - RM %.2f</string>
     <string name="no_history">No calculation history available</string>
 
-    <!-- Error Messages -->
+    <!-- Error & Success Messages -->
     <string name="error_enter_units">Please enter electricity units</string>
-    <string name="error_units_positive">Units must be greater than 0</string>
+    <string name="error_units_positive">Electricity units must be greater than 0</string>
+    <string name="error_units_max">
+        Maximum electricity units allowed is 1000 kWh.
+        Please enter a value between 1 and 1000.
+    </string>
     <string name="error_invalid_number">Please enter a valid number</string>
-    <string name="success_saved">Calculation saved successfully!</string>
     <string name="error_save_failed">Failed to save: %s</string>
-
-    <!-- These are now the only definitions for these buttons -->
-    <string name="btn_edit">EDIT</string>
-    <string name="btn_delete">DELETE</string>
-    <string name="btn_save">SAVE</string>
-    <string name="btn_cancel">CANCEL</string>
+    <string name="success_saved">Calculation saved successfully!</string>
 
 </resources>
