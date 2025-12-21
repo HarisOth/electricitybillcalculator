@@ -10,7 +10,6 @@ KiraBill is an Android application designed for calculating monthly electricity 
 - **Local Data Storage** – SQLite database for offline access  
 - **Complete History Tracking** – View all past calculations  
 - **Edit & Delete Functionality** – Full CRUD operations for managing records  
-- **Professional UI Design** – Card-based material design interface  
 - **Student Information Section** – Includes academic details and project information  
 
 ## Architecture
@@ -51,6 +50,14 @@ The electricity units are charged based on the block used. Refer to the table fo
 | About Section | GitHub Integration |
 |---------------|--------------------|
 | ![About Section](screenshots/ss6.png) | ![GitHub Integration](screenshots/ss7.png) |
+
+## Input and Output Screenshot
+| Input | Output |
+|---------------|-----------|
+| ![Input Screen](screenshots/input.png) | ![Output Screen](screenshots/output.png) |
+
+**Video Demonstration**:  
+`Link Youtube = https://youtu.be/y_sXMgJ3Auk?si=1Lck09K-g_DYJI2D
 
 ## Installation
 1. Click **"Code"** → **"Download ZIP"** on GitHub  
