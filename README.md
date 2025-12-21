@@ -56,8 +56,8 @@ The electricity units are charged based on the block used. Refer to the table fo
 |---------------|-----------|
 | ![Input Screen](screenshots/input.png) | ![Output Screen](screenshots/output.png) |
 
-**Video Demonstration**:  
-`Link Youtube = https://youtu.be/y_sXMgJ3Auk?si=1Lck09K-g_DYJI2D
+## Video Demonstration  
+Link Youtube = https://youtu.be/y_sXMgJ3Auk?si=1Lck09K-g_DYJI2D
 
 ## Installation
 1. Click **"Code"** → **"Download ZIP"** on GitHub  
